@@ -2,7 +2,7 @@ const axios = require('axios');
 
 async function runTest() {
     const url = 'http://web:80/';
-    const expected = 'Hello world';
+    const expected = 'Karen';
 
     console.log(`Testing URL: ${url}`);
 

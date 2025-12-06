@@ -6,4 +6,4 @@ CREATE TABLE IF NOT EXISTS messages (
     message VARCHAR(255) NOT NULL
 );
 
-INSERT INTO messages (message) VALUES ('Hello world');
+INSERT INTO messages (message) VALUES ('Karen');
