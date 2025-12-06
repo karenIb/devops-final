@@ -1,0 +1,14 @@
+{
+    "name": "integration-tests",
+    "version": "1.0.0",
+    "description": "Integration tests for PHP application",
+    "main": "test.js",
+    "dependencies": {
+        "axios": "^0.21.1"
+    },
+    "scripts": {
+        "test": "node test.js"
+    },
+    "author": "",
+    "license": "ISC"
+}
