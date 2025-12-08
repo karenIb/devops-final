@@ -4,7 +4,7 @@ Code
 
 ```
 docker run -d -p 8080:8080 -p 50000:50000   --name jenkins   -v jenkins_home:/var/jenkins_home   --restart always -v /var/run/docker.sock:/var/run/docker.sock   jenkins-with-docker
-``` 
+```  
 Explanation of the command:
 -d: Runs the container in detached mode (in the background).
 -p 8080:8080: Maps port 8080 of the host to port 8080 inside the container, allowing access to the Jenkins web interface.
