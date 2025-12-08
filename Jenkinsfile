@@ -40,6 +40,31 @@ pipeline {
     post {
         always {
              echo 'Pipeline finished.'
+             emailext(
+                to: 'karenibrahim76@gmail.com',
+                subject: "Jenkins Build: ${currentBuild.fullDisplayName} (${currentBuild.currentResult})",
+                mimeType: 'text/html',
+                body: """
+<h2>Build Details</h2>
+<ul>
+  <li>Project: ${env.JOB_NAME}</li>
+  <li>Build Number: ${env.BUILD_NUMBER}</li>
+  <li>Status: ${currentBuild.currentResult}</li>
+  <li>URL: <a href='${env.BUILD_URL}'>${env.BUILD_URL}</a></li>
+  <li>Started by: ${currentBuild.getBuildCauses()[0]?.userName ?: 'SCM/Timer'}</li>
+</ul>
+
+<h3>Changes Since Last Build:</h3>
+<ul>
+${currentBuild.changeSets.collect { cs -> 
+    cs.items.collect { "<li>${it.commitId} - ${it.msg} by ${it.author}</li>" }.join("")
+}.join("")}
+</ul>
+
+<h3>Console Output:</h3>
+<a href='${env.BUILD_URL}console'>View Full Console</a>
+"""
+            )
         }
         success {
             echo 'SUCCESS: Pipeline executed successfully.'
