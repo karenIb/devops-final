@@ -16,7 +16,7 @@ This project demonstrates a complete CI/CD pipeline using Docker, Docker Compose
 ├── jenkins-run.sh      # Script to start Jenkins
 └── README.md           # Documentation
 ```
-
+ 
 ## Prerequisites
 
 - **Docker Desktop** installed and running.
