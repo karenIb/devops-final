@@ -42,7 +42,7 @@ chmod +x jenkins-run.sh
 - **Important**: You need to install the **Docker Pipeline** plugin and **Docker** plugin in Jenkins if they are not selected by default, though "Suggested plugins" usually covers what's needed for basic pipeline.
 
 ### 2. Configure Jenkins Pipeline
-
+ 
 1.  Create a "New Item" from the Jenkins dashboard.
 2.  Enter a name (e.g., `devops-pipeline`) and select **Pipeline**.
 3.  Scroll down to the **Pipeline** section.
