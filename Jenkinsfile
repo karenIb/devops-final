@@ -5,7 +5,6 @@ pipeline {
         
         stage('Build') {
             steps {
-                cleanWs() // Cleans the workspace
                 sh 'docker compose build --no-cache'
             }
         }
