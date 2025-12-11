@@ -51,7 +51,7 @@ chmod +x jenkins-run.sh
 6.  Repository URL: Use the local path or your git repo url. If running locally with the volume mount as configured in `jenkins-run.sh`, the project is mapped to `/var/jenkins_home/workspace/project`.
     *   *However, for a standard flow*, you would push this code to GitHub and use the GitHub URL.
     *   *For local testing without git push*: You can select **Pipeline script** and copy-paste the content of `Jenkinsfile` into the script box.
-
+ 
 ### 3. Run the Pipeline
 
 - Click **Build Now**.
