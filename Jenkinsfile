@@ -6,7 +6,6 @@ pipeline {
             steps {
                 echo "Cleaning workspace..."
                 cleanWs()       // Jenkins plugin command
-                deleteDir()     // Deletes all files in the workspace
             }
         }
         
