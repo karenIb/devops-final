@@ -80,4 +80,3 @@ To run only the tests and exit with a code:
 ```bash
 docker-compose up --abort-on-container-exit --exit-code-from test
 ```
-###
