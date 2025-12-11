@@ -68,12 +68,22 @@ ${currentBuild.changeSets.collect { cs ->
         }
         success {
             echo 'SUCCESS: Pipeline executed successfully.'
+            // Tell GitHub this commit is OK
+            githubNotify context: 'CI/Jenkins',
+                        status: 'SUCCESS',
+                        description: "Build ${env.BUILD_NUMBER} passed",
+                        targetUrl: env.BUILD_URL
             // Using mailer plugin if configured, or just echo for now
             // mail to: 'developer@example.com', subject: 'Build Success', body: "Build ${env.BUILD_NUMBER} passed tests."
         }
         failure {
             echo 'FAILURE: Pipeline failed.'
             sh 'docker compose down' 
+            // Tell GitHub this commit failed
+            githubNotify context: 'CI/Jenkins',
+                     status: 'FAILURE',
+                     description: "Build ${env.BUILD_NUMBER} failed",
+                     targetUrl: env.BUILD_URL
         }
     }
 }
