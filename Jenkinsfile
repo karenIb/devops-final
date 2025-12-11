@@ -2,8 +2,17 @@ pipeline {
     agent any
 
     stages {
+        stage('Clean') {
+            steps {
+                echo "Cleaning workspace..."
+                cleanWs()       // Jenkins plugin command
+                deleteDir()     // Deletes all files in the workspace
+            }
+        }
+        
         stage('Build') {
             steps {
+                cleanWs() // Cleans the workspace
                 sh 'docker compose build --no-cache'
             }
         }
