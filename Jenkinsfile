@@ -2,12 +2,6 @@ pipeline {
     agent any
 
     stages {
-        stage('Clean') {
-            steps {
-                echo "Cleaning workspace..."
-                cleanWs()       // Jenkins plugin command
-            }
-        }
         
         stage('Build') {
             steps {
