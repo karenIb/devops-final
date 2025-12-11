@@ -3,7 +3,7 @@
 This project demonstrates a complete CI/CD pipeline using Docker, Docker Compose, Jenkins, PHP, MySQL, and Node.js.
 
 ## Project Structure
- 
+  
 ```
 .
 ├── src/                # PHP Application Source Code
