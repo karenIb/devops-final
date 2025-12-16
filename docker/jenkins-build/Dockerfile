@@ -15,6 +15,4 @@ RUN mkdir -p /usr/lib/docker/cli-plugins && \
       -o /usr/lib/docker/cli-plugins/docker-compose && \
     chmod +x /usr/lib/docker/cli-plugins/docker-compose
 
-# (Optional) run Jenkins as root so it can use /var/run/docker.sock easily
-# This is simpler for learning environments
 USER root
