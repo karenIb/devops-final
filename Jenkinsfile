@@ -12,8 +12,8 @@ pipeline {
         stage('Test') {
             steps {
                 // Run the test service and exit with its code
-                // --abort-on-container-exit stops other containers if one stops (useful if test finishes)
-                // --exit-code-from test ensures jenkins gets the exit code of test container
+                // When the test container finishes, it exits, and that exit event triggers --abort-on-container-exit, which stops all other containers.
+                // --exit-code-from test ensures Jenkins uses the test container’s result to mark the pipeline as success or failure.
                 sh 'docker compose up --abort-on-container-exit --exit-code-from test'
             }
         }
@@ -22,11 +22,7 @@ pipeline {
             steps {
                 script {
                    echo 'Deploying application...'
-                   // In a real scenario, this would deploy to a production server.
-                   // Here we are simulating deployment by keeping the services running if needed,
-                   // but since we tore them down after test (or will tear down), 
-                   // we can restart the web service in detached mode for "production" usage.
-                   
+
                    // Clean up the test run
                    sh 'docker compose down'
                    
@@ -46,32 +42,29 @@ pipeline {
                 subject: "Jenkins Build: ${currentBuild.fullDisplayName} (${currentBuild.currentResult})",
                 mimeType: 'text/html',
                 body: """
-<h2>Build Details</h2>
-<ul>
-  <li>Project: ${env.JOB_NAME}</li>
-  <li>Build Number: ${env.BUILD_NUMBER}</li>
-  <li>Status: ${currentBuild.currentResult}</li>
-  <li>URL: <a href='${env.BUILD_URL}'>${env.BUILD_URL}</a></li>
-  <li>Started by: ${currentBuild.getBuildCauses()[0]?.userName ?: 'SCM/Timer'}</li>
-</ul>
+                    <h2>Build Details</h2>
+                    <ul>
+                    <li>Project: ${env.JOB_NAME}</li>
+                    <li>Build Number: ${env.BUILD_NUMBER}</li>
+                    <li>Status: ${currentBuild.currentResult}</li>
+                    <li>URL: <a href='${env.BUILD_URL}'>${env.BUILD_URL}</a></li>
+                    <li>Started by: ${currentBuild.getBuildCauses()[0]?.userName ?: 'SCM/Timer'}</li>
+                    </ul>
 
-<h3>Changes Since Last Build:</h3>
-<ul>
-${currentBuild.changeSets.collect { cs -> 
-    cs.items.collect { "<li>${it.commitId} - ${it.msg} by ${it.author}</li>" }.join("")
-}.join("")}
-</ul>
+                    <h3>Changes Since Last Build:</h3>
+                    <ul>
+                    ${currentBuild.changeSets.collect { cs -> 
+                        cs.items.collect { "<li>${it.commitId} - ${it.msg} by ${it.author}</li>" }.join("")
+                    }.join("")}
+                    </ul>
 
-<h3>Console Output:</h3>
-<a href='${env.BUILD_URL}console'>View Full Console</a>
-"""
-            )
-        }
+                    <h3>Console Output:</h3>
+                    <a href='${env.BUILD_URL}console'>View Full Console</a>
+                    """
+                        )
+                } 
         success {
             echo 'SUCCESS: Pipeline executed successfully.'
-            // Tell GitHub this commit is OK
-            // Using mailer plugin if configured, or just echo for now
-            // mail to: 'developer@example.com', subject: 'Build Success', body: "Build ${env.BUILD_NUMBER} passed tests."
         }
         failure {
             echo 'FAILURE: Pipeline failed.'
