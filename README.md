@@ -27,7 +27,7 @@ The project follows a modular structure to separate application code, Docker con
  
 --- 
 
-## 2. File Elaboration
+## 2. File Elaboration 
 
 ### **Jenkinsfile** (Critical Component)
 The `Jenkinsfile` is the heart of our automation. It defines the **Pipeline** that Jenkins executes. It triggers on Git events (Push/PR) and runs the following stages:
