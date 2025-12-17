@@ -24,7 +24,7 @@ The project follows a modular structure to separate application code, Docker con
 ├── jenkins-run.sh          # Helper script to bootstrap the Jenkins environment.
 └── README.md               # This documentation file.
 ```
-
+ 
 ---
 
 ## 2. File Elaboration
