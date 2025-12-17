@@ -25,7 +25,7 @@ The project follows a modular structure to separate application code, Docker con
 └── README.md               # This documentation file.
 ```
  
----
+--- 
 
 ## 2. File Elaboration
 
