@@ -68,7 +68,6 @@ pipeline {
         }
         failure {
             echo 'FAILURE: Pipeline failed.'
-            sh 'docker compose down' 
             
         }
     }
